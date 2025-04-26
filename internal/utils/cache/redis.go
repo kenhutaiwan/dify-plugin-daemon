@@ -27,6 +27,14 @@ func getRedisOptions(addr, username, password string, useSsl bool, db int) *redi
 		Password: password,
 		DB:       db,
 	}
+	log.Info(
+		"Incoming parameters for getRedisOptions: addr=%s, username=%s, password=%s, useSsl=%v, db=%d", // 注意這裡使用 %v 或 %t 都可以表示 bool
+		addr,         // 對應第一個 %s
+		username,     // 對應第二個 %s
+		"***MASKED_PASSWORD***", // ***重要：用佔位符取代實際密碼***
+		useSsl,       // 對應 %v 或 %t
+		db,           // 對應 %d
+	)
 	if useSsl {
 		opts.TLSConfig = &tls.Config{}
 	}
